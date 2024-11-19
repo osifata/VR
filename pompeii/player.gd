@@ -5,7 +5,7 @@ extends CharacterBody3D
  
  
 var accel = 6
-var SPEED = 2.0
+var SPEED = 1.0
 var JUMP_VELOCITY = 4.5
 var crouched = false #определяет приседает игрок или нет
 var input_dir = Vector3(0,0,0) #направление нажатия кнопок
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and crouched == false: # прыжок
 		velocity.y = JUMP_VELOCITY
 		
-	if is_on_floor() and Input.is_action_pressed("+shift"):
+	if is_on_floor() and Input.is_action_pressed("speed"):
 		SPEED = 10
 	else:
 		SPEED = 5
