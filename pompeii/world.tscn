@@ -1,20 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c10235u5euaxs"]
+[gd_scene load_steps=6 format=3 uid="uid://c10235u5euaxs"]
 
 [ext_resource type="PackedScene" uid="uid://cll8ppusxmivn" path="res://player.tscn" id="1_m1l3o"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kh70c"]
-sky_top_color = Color(0.776736, 0.128826, 0.478529, 1)
-sky_horizon_color = Color(0.893586, 0.544846, 0.526235, 1)
-sky_curve = 0.0326456
-
-[sub_resource type="Sky" id="Sky_dfli6"]
-sky_material = SubResource("ProceduralSkyMaterial_kh70c")
-
-[sub_resource type="Environment" id="Environment_7bspr"]
-background_mode = 2
-sky = SubResource("Sky_dfli6")
-
-[sub_resource type="PrismMesh" id="PrismMesh_kuca0"]
+[ext_resource type="PackedScene" uid="uid://qrodm000pspx" path="res://models/place.gltf" id="2_i01ik"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ih11"]
 lifetime_randomness = 1.0
@@ -26,6 +13,7 @@ spread = 0.0
 gravity = Vector3(0, -10, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a6pw"]
+albedo_color = Color(1, 0.23, 0.23, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vvuw1"]
 material = SubResource("StandardMaterial3D_3a6pw")
@@ -34,34 +22,19 @@ orientation = 2
 
 [node name="World" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00511523, 0)
-use_collision = true
-size = Vector3(5.47168, 0.001, 5.85181)
-
 [node name="root" parent="." instance=ExtResource("1_m1l3o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24417, 0.446693, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7bspr")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.793, 0)
+light_color = Color(0.942357, 0.970025, 0.779052, 1)
 shadow_enabled = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.528975, -2.00657)
-use_collision = true
-mesh = SubResource("PrismMesh_kuca0")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166495, 1.95214)
-use_collision = true
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+[node name="place" parent="." instance=ExtResource("2_i01ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7249, -1.62263, -39.7758)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.763, 0, 0, 0, 0.589, 0, 0, 0, 0.773, 0.0182567, 2.18652, 0.037665)
+transform = Transform3D(1.62172, 0, 0, 0, 0.589, 0, 0, 0, 2.73672, 0.0182567, 2.18652, 0.037665)
 emitting = false
 amount = 5000
 lifetime = 10.0
