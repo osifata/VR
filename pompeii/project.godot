@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="POMPEII"
-run/main_scene="res://world.tscn"
+run/main_scene="res://catscene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.65665, 0.330041, 0.19901, 1)
 config/icon="res://icon.svg"
