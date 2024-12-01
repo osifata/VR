@@ -2,8 +2,59 @@
 
 [ext_resource type="Script" path="res://catscene.gd" id="1_dvw6i"]
 [ext_resource type="PackedScene" uid="uid://dpgtpw01ux6aq" path="res://bird.tscn" id="1_rwoxd"]
-[ext_resource type="PackedScene" uid="uid://dypauawwp354b" path="res://models/vulcao_em_erupcao_-_erupting_volcano.glb" id="3_jk3m0"]
-[ext_resource type="PackedScene" uid="uid://ciqfryanytjyc" path="res://models/3d_field_inspection.glb" id="4_7qoa3"]
+[ext_resource type="PackedScene" uid="uid://dxp0ukb5ysa0n" path="res://models/vulcao_em_erupcao_-_erupting_volcano.glb" id="3_jk3m0"]
+[ext_resource type="PackedScene" uid="uid://canvcb75qdtuj" path="res://models/3d_field_inspection.glb" id="4_7qoa3"]
+
+[sub_resource type="Animation" id="Animation_evt1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.30603, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.237028, 1.35078)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.146247, -0.745528, -0.156544)]
+}
 
 [sub_resource type="Animation" id="Animation_jpx5b"]
 resource_name = "move"
@@ -57,57 +108,6 @@ tracks/3/keys = {
 "values": [Vector3(-0.011431, -1.57931, -0.111443), Vector3(-0.0683701, -1.09053, -0.119268), Vector3(-0.264486, -0.729032, -0.436078), Vector3(0.107976, -0.100288, -0.0289563), Vector3(0.197234, 0.0779807, -0.022683)]
 }
 
-[sub_resource type="Animation" id="Animation_evt1v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -2.30603, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Camera3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.237028, 1.35078)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Camera3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.146247, -0.745528, -0.156544)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3pkfy"]
 _data = {
 "RESET": SubResource("Animation_evt1v"),
@@ -128,11 +128,11 @@ reflected_light_source = 2
 script = ExtResource("1_dvw6i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.710333, 0.212195, -0.671119, -0.154241, 0.977228, 0.145726, 0.686758, 0, 0.726886, 0, 0.237028, 1.35078)
+transform = Transform3D(0.710334, 0.212195, -0.671118, -0.154241, 0.977228, 0.145726, 0.686757, -2.01166e-07, 0.726886, 0, 0.237028, 1.35078)
 fov = 37.8256
 
 [node name="bird" parent="." instance=ExtResource("1_rwoxd")]
-transform = Transform3D(-0.670763, 0, -0.741672, 0, 1, 0, 0.741672, 0, -0.670763, 0, 0, 0)
+transform = Transform3D(-0.670761, 0, -0.741674, 0, 1, 0, 0.741674, 0, -0.670761, 0, 0, 0)
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 root_node = NodePath("../bird")
