@@ -20,7 +20,7 @@ input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dguvv"]
-graph_offset = Vector2(118.517, 39.1676)
+graph_offset = Vector2(62.0908, 91.4545)
 nodes/fly/node = SubResource("AnimationNodeAnimation_rf4rd")
 nodes/fly/position = Vector2(460, 180)
 nodes/ide/node = SubResource("AnimationNodeAnimation_ct18q")
@@ -82,6 +82,7 @@ bones/1/rotation = Quaternion(0.207669, 0.694484, -0.679959, 0.110555)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/position = Vector3(7.57817e-10, 0.00484024, -2.29861e-09)
 bones/2/rotation = Quaternion(0.102136, 0.0263601, 0.191377, 0.975832)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/position = Vector3(-3.86264e-10, 0.00611482, 7.59263e-10)
 bones/3/rotation = Quaternion(0.0527631, 0.0770029, 0.225873, 0.969674)
 bones/3/scale = Vector3(1, 1, 1)
@@ -111,6 +112,7 @@ bones/5/rotation = Quaternion(0.678694, 0.115126, -0.212093, 0.693641)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/position = Vector3(-1.13355e-10, 0.00484024, 4.52843e-09)
 bones/6/rotation = Quaternion(0.131433, 0.00270137, 0.0340259, 0.990737)
+bones/6/scale = Vector3(1, 1, 1)
 bones/7/position = Vector3(5.47423e-10, 0.00611482, 1.43852e-09)
 bones/7/rotation = Quaternion(0.0929087, 0.0303157, 0.0776467, 0.992179)
 bones/7/scale = Vector3(1, 1, 1)
@@ -122,6 +124,7 @@ bones/1/rotation = Quaternion(0.207669, 0.694484, -0.679959, 0.110555)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/position = Vector3(-6.17069e-10, 0.00484023, 9.08888e-10)
 bones/2/rotation = Quaternion(0.102136, 0.0263601, 0.191377, 0.975832)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/position = Vector3(5.24055e-10, 0.00611482, -3.79969e-09)
 bones/3/rotation = Quaternion(0.0527631, 0.0770029, 0.225873, 0.969674)
 bones/3/scale = Vector3(1, 1, 1)
@@ -141,3 +144,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/in_air/current_state = "false"
 parameters/in_air/transition_request = ""
 parameters/in_air/current_index = 0
+
+[node name="Camera3D" type="Camera3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.35406)

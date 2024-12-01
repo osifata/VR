@@ -128,7 +128,7 @@ reflected_light_source = 2
 script = ExtResource("1_dvw6i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.710334, 0.212195, -0.671118, -0.154241, 0.977228, 0.145726, 0.686757, -2.01166e-07, 0.726886, 0, 0.237028, 1.35078)
+transform = Transform3D(0.710334, 0.212194, -0.671118, -0.154241, 0.977228, 0.145726, 0.686757, -2.01166e-07, 0.726886, 0, 0.237028, 1.35078)
 fov = 37.8256
 
 [node name="bird" parent="." instance=ExtResource("1_rwoxd")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c10235u5euaxs"]
+[gd_scene load_steps=18 format=3 uid="uid://c10235u5euaxs"]
 
 [ext_resource type="PackedScene" uid="uid://cll8ppusxmivn" path="res://player.tscn" id="1_m1l3o"]
 [ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="2_i01ik"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://models/clouds.gdshader" id="4_s45xa"]
 [ext_resource type="Texture2D" uid="uid://xkrqytufo5tf" path="res://models/c7104516f546eab1e9243bdaae312809.jpg" id="5_8aarf"]
 [ext_resource type="PackedScene" uid="uid://bg401b1lem2b5" path="res://models/mount.gltf" id="7_u8rjx"]
+[ext_resource type="Script" path="res://panel.gd" id="8_n0nk4"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ih11"]
 lifetime_randomness = 1.0
@@ -163,9 +164,9 @@ shadow_enabled = true
 transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, -14.2862, -1.62263, -19.1327)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1.62172, 0, 0, 0, 0.589, 0, 0, 0, 2.73672, -5.04947, 6.10427, 0.037665)
+transform = Transform3D(5.73253, 0, 0, 0, 1.06667, 0, 0, 0, 13.3318, -20.3033, 6.62473, -16.7132)
 emitting = false
-amount = 5000
+amount = 100000
 lifetime = 10.0
 speed_scale = 0.1
 randomness = 0.49
@@ -184,10 +185,35 @@ surface_material_override/0 = SubResource("ShaderMaterial_3u1yd")
 environment = SubResource("Environment_n7isx")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("4_oj6of")]
-transform = Transform3D(56.1504, 0, 0.715447, 0, 56.155, 0, -0.715447, 0, 56.1504, -26.2312, 5.08827, -152.473)
+transform = Transform3D(161.957, 0, 2.06359, 0, 161.97, 0, -2.06359, 0, 161.957, -26.2312, 11.6689, -186.259)
 
 [node name="mount" parent="." instance=ExtResource("7_u8rjx")]
 transform = Transform3D(27.6078, 0, -41.6871, 0, 50, 0, 41.6871, 0, 27.6078, -87.7186, -1.74464, -192.527)
 
 [node name="mount2" parent="." instance=ExtResource("7_u8rjx")]
 transform = Transform3D(-49.9539, 0, -2.14609, 0, 50, 0, 2.14609, 0, -49.9539, 48.6521, -1.74464, -147.796)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 98.0
+offset_bottom = 40.0
+script = ExtResource("8_n0nk4")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 47.0
+offset_bottom = 29.0
+text = "00."
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 6.0
+offset_right = 66.0
+offset_bottom = 29.0
+text = "00"
+horizontal_alignment = 2

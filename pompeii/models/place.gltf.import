@@ -75,6 +75,15 @@ _subresources={
 },
 "PATH:Plane_003": {
 "generate/physics": true
+},
+"PATH:rock_001": {
+"generate/physics": true
+},
+"PATH:rock_002": {
+"generate/physics": true
+},
+"PATH:rock_003": {
+"generate/physics": true
 }
 }
 }
