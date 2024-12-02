@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cll8ppusxmivn" path="res://player.tscn" id="1_m1l3o"]
 [ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="2_i01ik"]
-[ext_resource type="Texture2D" uid="uid://cdlqauf0ib7se" path="res://models/normal map water.jpg" id="3_vq0gs"]
+[ext_resource type="Texture2D" uid="uid://bladoega1axbg" path="res://models/normal map water.jpg" id="3_vq0gs"]
 [ext_resource type="PackedScene" uid="uid://dxp0ukb5ysa0n" path="res://models/vulcao_em_erupcao_-_erupting_volcano.glb" id="4_oj6of"]
 [ext_resource type="Shader" path="res://models/clouds.gdshader" id="4_s45xa"]
 [ext_resource type="Texture2D" uid="uid://xkrqytufo5tf" path="res://models/c7104516f546eab1e9243bdaae312809.jpg" id="5_8aarf"]
@@ -30,7 +30,7 @@ orientation = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ccs3c"]
 
-[sub_resource type="Shader" id="Shader_0xd8c"]
+[sub_resource type="Shader" id="Shader_kbrro"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -103,8 +103,8 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3u1yd"]
 render_priority = 0
-shader = SubResource("Shader_0xd8c")
-shader_parameter/albedo = Color(0.101961, 0.403922, 0.556863, 0.603922)
+shader = SubResource("Shader_kbrro")
+shader_parameter/albedo = Color(0.1044, 0.421467, 0.58, 0.847059)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.0
 shader_parameter/metallic_texture_channel = null
@@ -138,12 +138,12 @@ shader_parameter/ground_color = Color(0.707967, 0.707967, 0.707967, 1)
 shader_parameter/exposure = 0.1
 shader_parameter/weathermap = ExtResource("5_8aarf")
 
-[sub_resource type="Sky" id="Sky_ppfmo"]
+[sub_resource type="Sky" id="Sky_fexwp"]
 sky_material = SubResource("ShaderMaterial_n2bfr")
 
 [sub_resource type="Environment" id="Environment_n7isx"]
 background_mode = 2
-sky = SubResource("Sky_ppfmo")
+sky = SubResource("Sky_fexwp")
 ssr_fade_in = 0.126134
 ssao_radius = 4.14
 fog_light_energy = 0.49
@@ -167,7 +167,6 @@ transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, -14.2862, -1.62263, 
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(5.73253, 0, 0, 0, 1.06667, 0, 0, 0, 13.3318, -20.3033, 6.62473, -16.7132)
-emitting = false
 amount = 100000
 lifetime = 10.0
 speed_scale = 0.1
@@ -180,7 +179,6 @@ draw_pass_1 = SubResource("PlaneMesh_vvuw1")
 
 [node name="WATER" type="MeshInstance3D" parent="."]
 transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -1.054, 0)
-visible = false
 mesh = SubResource("PlaneMesh_ccs3c")
 surface_material_override/0 = SubResource("ShaderMaterial_3u1yd")
 
@@ -188,13 +186,16 @@ surface_material_override/0 = SubResource("ShaderMaterial_3u1yd")
 environment = SubResource("Environment_n7isx")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("4_oj6of")]
-transform = Transform3D(161.957, 0, 2.06359, 0, 161.97, 0, -2.06359, 0, 161.957, -26.2312, 11.6689, -186.259)
+transform = Transform3D(161.957, 0, 2.06359, 0, 161.97, 0, -2.06359, 0, 161.957, -26.2312, 18.5976, -186.259)
 
 [node name="mount" parent="." instance=ExtResource("7_u8rjx")]
 transform = Transform3D(27.6078, 0, -41.6871, 0, 50, 0, 41.6871, 0, 27.6078, -87.7186, -1.74464, -192.527)
 
+[node name="mount3" parent="." instance=ExtResource("7_u8rjx")]
+transform = Transform3D(37.573, 0, -32.989, 0, 50, 0, 32.989, 0, 37.573, -120.411, -1.74464, -137.069)
+
 [node name="mount2" parent="." instance=ExtResource("7_u8rjx")]
-transform = Transform3D(-49.9539, 0, -2.14609, 0, 50, 0, 2.14609, 0, -49.9539, 48.6521, -1.74464, -147.796)
+transform = Transform3D(-49.9539, 0, -2.14609, 0, 50, 0, 2.14609, 0, -49.9539, 48.6521, -2.08709, -147.796)
 
 [node name="время" type="CanvasLayer" parent="."]
 
@@ -221,13 +222,50 @@ offset_bottom = 29.0
 text = "00"
 horizontal_alignment = 2
 
-[node name="невидимые стены" type="CSGBox3D" parent="."]
-transform = Transform3D(-7.38624e-07, 0, -0.433507, 0, 5.05473, 0, 16.8977, 0, -1.89492e-08, -0.79392, 0, 0)
+[node name="Группа невидимые стены" type="Node3D" parent="."]
+transform = Transform3D(-7.38624e-07, 0, -0.433507, 0, 5.05473, 0, 16.8977, 0, -1.89492e-08, -0.79392, 0, 2.1852)
+
+[node name="невидимые стены" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0.185708, 0)
 visible = false
 use_collision = true
 
-[node name="невидимые стены2" type="CSGBox3D" parent="."]
-transform = Transform3D(-3.60261e-07, 0, -0.366101, 0, 8.16407, 0, 8.24178, 0, -1.60028e-08, -15.2856, 0, -9.53316)
+[node name="невидимые стены4" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(1.18436, 0, 4.44089e-16, 0, 1.18444, 0, -5.68434e-12, 0, 1.18568, 0.310774, 0.122974, 7.32268)
+visible = false
+use_collision = true
+
+[node name="невидимые стены3" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(-4.37114e-08, 0, -0.0256548, 0, 1, 0, 38.9791, 0, -4.37113e-08, -0.47614, 0.367871, 16.1526)
+visible = false
+use_collision = true
+size = Vector3(0.890625, 1, 1)
+
+[node name="невидимые стены8" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(-3.76657e-06, 0, -0.026, 0, 1, 0, 86.169, 0, -1.13648e-09, -2.61584, 0.234879, 47.6615)
+visible = false
+use_collision = true
+size = Vector3(0.890625, 1, 1)
+
+[node name="невидимые стены7" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(-3.43674e-08, 0, -0.0165111, 0, 0.64316, 0, 12.4865, 0, -6.90469e-08, 0.741788, 0.149959, 3.31129)
+visible = false
+use_collision = true
+size = Vector3(0.890625, 1, 1)
+
+[node name="невидимые стены5" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(-4.37114e-08, 0, -0.0256548, 0, 1, 0, 38.9791, 0, -4.37113e-08, -0.27611, 0.291902, 24.3031)
+visible = false
+use_collision = true
+size = Vector3(0.890625, 1, 1)
+
+[node name="невидимые стены2" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(0.487746, 0, -8.88178e-16, 0, 1.61513, 0, 6.25278e-13, 0, 0.84451, -0.725318, 0, 33.7997)
+visible = false
+use_collision = true
+
+[node name="невидимые стены6" type="CSGBox3D" parent="Группа невидимые стены"]
+transform = Transform3D(0.487746, 0, -7.77156e-16, 0, 1.61513, 0, 6.25278e-13, 0, 0.84451, -0.518524, 0, 39.9043)
 visible = false
 use_collision = true
 

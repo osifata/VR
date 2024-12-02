@@ -33,56 +33,31 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Cube": {
+"PATH:газон": {
 "generate/physics": true
 },
-"PATH:Cube_001": {
+"PATH:земля": {
 "generate/physics": true
 },
-"PATH:Cube_002": {
+"PATH:камни": {
 "generate/physics": true
 },
-"PATH:Cube_003": {
+"PATH:колонны 3": {
 "generate/physics": true
 },
-"PATH:Cube_008": {
+"PATH:колонны 4": {
 "generate/physics": true
 },
-"PATH:Cube_012": {
-"generate/physics": true,
-"primitive/position": Vector3(0, 5, 0)
-},
-"PATH:Cylinder_001": {
+"PATH:колонны1": {
 "generate/physics": true
 },
-"PATH:Cylinder_005": {
+"PATH:колонны2": {
 "generate/physics": true
 },
-"PATH:Cylinder_006": {
+"PATH:мост": {
 "generate/physics": true
 },
-"PATH:Cylinder_007": {
-"generate/physics": true
-},
-"PATH:Cylinder_008": {
-"generate/physics": true
-},
-"PATH:Cylinder_015": {
-"generate/physics": true
-},
-"PATH:Plane": {
-"generate/physics": true
-},
-"PATH:Plane_003": {
-"generate/physics": true
-},
-"PATH:rock_001": {
-"generate/physics": true
-},
-"PATH:rock_002": {
-"generate/physics": true
-},
-"PATH:rock_003": {
+"PATH:стены": {
 "generate/physics": true
 }
 }
