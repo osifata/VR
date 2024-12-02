@@ -178,6 +178,7 @@ draw_pass_1 = SubResource("PlaneMesh_vvuw1")
 
 [node name="WATER" type="MeshInstance3D" parent="."]
 transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -1.054, 0)
+visible = false
 mesh = SubResource("PlaneMesh_ccs3c")
 surface_material_override/0 = SubResource("ShaderMaterial_3u1yd")
 
@@ -202,18 +203,23 @@ script = ExtResource("8_n0nk4")
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 23.0
+offset_left = 14.0
 offset_top = 6.0
-offset_right = 47.0
+offset_right = 38.0
 offset_bottom = 29.0
 text = "00."
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 46.0
+offset_left = 49.0
 offset_top = 6.0
-offset_right = 66.0
+offset_right = 69.0
 offset_bottom = 29.0
 text = "00"
 horizontal_alignment = 2
+
+[node name="невидимые стены" type="CSGBox3D" parent="."]
+transform = Transform3D(-7.38624e-07, 0, -0.433507, 0, 5.05473, 0, 16.8977, 0, -1.89492e-08, -0.79392, 0, 0)
+visible = false
+use_collision = true
