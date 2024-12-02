@@ -18,8 +18,8 @@ func _process(delta) -> void:
 		seconds = int(time)  # Целое число секунд
 
 		# Форматируем текст для отображения
-		$Label.text = "%02d." % seconds
-		$Label2.text = "%03d" % msec
+		$seconds.text = "%02d." % seconds
+		$milisec.text = "%03d" % msec
 
 # Функция для смены сцены
 func change_scene() -> void:

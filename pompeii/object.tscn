@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1hronft2xgl0"]
+
+[ext_resource type="PackedScene" uid="uid://cdpkx6g7lk33c" path="res://models/old_colored_wooden_plank._low_poly/scene.gltf" id="1_w831g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4jq5"]
+
+[node name="object" type="StaticBody3D" groups=["boards"]]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_w831g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0535477, 0.122116, 0.0724099)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 0, 0, 0)
+shape = SubResource("BoxShape3D_b4jq5")

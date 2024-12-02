@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cll8ppusxmivn"]
+[gd_scene load_steps=5 format=3 uid="uid://cll8ppusxmivn"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_2cl3x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7rtm7"]
 radius = 0.2
 height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84v17"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_mefat"]
+material = SubResource("StandardMaterial3D_84v17")
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_2cl3x")
@@ -20,3 +26,10 @@ transform = Transform3D(0.8791, 0, 0, 0, 0.8791, 0, 0, 0, 0.8791, 0, 0.581121, 0
 transform = Transform3D(0.847458, 0, 0, 0, 0.847458, 0, 0, 0, 0.847458, 0, 0, 0)
 current = true
 fov = 53.0987
+
+[node name="interaction" type="RayCast3D" parent="head/Camera3D"]
+target_position = Vector3(0, 0, -5)
+
+[node name="hand" type="MeshInstance3D" parent="head/Camera3D"]
+transform = Transform3D(0.045, 0, 0, 0, -1.96701e-09, -0.045, 0, 0.045, -1.96701e-09, 0, 0, -2.57258)
+mesh = SubResource("TorusMesh_mefat")

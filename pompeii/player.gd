@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 @onready var head = $head
 @onready var cam = $head/Camera3D
- 
+@onready var inter =$head/Camera3D/interaction
+@onready var hand = $head/Camera3D/hand
  
 var accel = 6
 var SPEED = 1.0
@@ -12,9 +13,17 @@ var input_dir = Vector3(0,0,0) #направление нажатия кнопо
 var direction = Vector3() # направление игрок
 var sens = 0.002
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var picked_object = 0
  
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func pick_object():
+	var collider = inter.get_collider()
+	if collider != null and collider.is_in_group("boards"):
+		picked_object += 1
+		collider.queue_free()
  
 func _input(event: InputEvent): #повороты мышкой
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -24,6 +33,8 @@ func _input(event: InputEvent): #повороты мышкой
 			head.rotate_y(-event.relative.x * sens)
 			cam.rotate_x(-event.relative.y * sens)
 			cam.rotation.x = clamp(cam.rotation.x,deg_to_rad(-89),deg_to_rad(89))
+	if Input.is_action_pressed("pick"):
+		pick_object()
 			
 func _physics_process(delta):
 	if Input.is_action_pressed("crouch"): #приседание
