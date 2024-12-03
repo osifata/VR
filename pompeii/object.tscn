@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdpkx6g7lk33c" path="res://models/old_colored_wooden_plank._low_poly/scene.gltf" id="1_w831g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4jq5"]
+size = Vector3(5.7793, 1, 1)
 
 [node name="object" type="StaticBody3D" groups=["boards"]]
 
@@ -10,5 +11,5 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0535477, 0.122116, 0.0724099)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 0, 0, 0)
+transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, -0.0909179, 0, 0)
 shape = SubResource("BoxShape3D_b4jq5")

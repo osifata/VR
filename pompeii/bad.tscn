@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3p0psqxphne7"]
+
+[ext_resource type="Texture2D" uid="uid://qpkvorhbl6mn" path="res://img/2017Nature___Volcanoes_Lightning_above_the_black_smoke_erupting_volcano_Colima_113560_18.jpg" id="1_3d8n3"]
+[ext_resource type="Script" path="res://bad.gd" id="1_50ybj"]
+
+[node name="bad" type="Node2D"]
+script = ExtResource("1_50ybj")
+
+[node name="2017NatureVolcanoesLightningAboveTheBlackSmokeEruptingVolcanoColima11356018" type="Sprite2D" parent="."]
+position = Vector2(579, 312)
+scale = Vector2(0.623333, 0.623333)
+texture = ExtResource("1_3d8n3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 512.0
+offset_right = 858.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 80
+text = "Ты погиб от вулкана("

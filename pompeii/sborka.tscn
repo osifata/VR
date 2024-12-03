@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://berc3cficwrvh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfn4d"]
+albedo_color = Color(0.26, 0.346333, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8qac3"]
+material = SubResource("StandardMaterial3D_jfn4d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_khgvh"]
+size = Vector3(1, 1, 2.60834)
+
+[node name="sborka" type="StaticBody3D" groups=["action"]]
+transform = Transform3D(1.50554, 0, 0, 0, 0.590235, 0, 0, 0, 0.19306, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8qac3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135345)
+shape = SubResource("BoxShape3D_khgvh")

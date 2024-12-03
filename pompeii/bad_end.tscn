@@ -1,0 +1,238 @@
+[gd_scene load_steps=18 format=3 uid="uid://c3rinh2wmivuf"]
+
+[ext_resource type="Script" path="res://bad_end.gd" id="1_btpn7"]
+[ext_resource type="Shader" path="res://models/clouds.gdshader" id="1_xqryp"]
+[ext_resource type="Texture2D" uid="uid://xkrqytufo5tf" path="res://models/c7104516f546eab1e9243bdaae312809.jpg" id="2_k00qh"]
+[ext_resource type="Texture2D" uid="uid://bladoega1axbg" path="res://models/normal map water.jpg" id="3_vf6a7"]
+[ext_resource type="PackedScene" uid="uid://dxp0ukb5ysa0n" path="res://models/vulcao_em_erupcao_-_erupting_volcano.glb" id="4_0l4go"]
+[ext_resource type="PackedScene" uid="uid://canvcb75qdtuj" path="res://models/3d_field_inspection.glb" id="5_26dl0"]
+[ext_resource type="PackedScene" uid="uid://bg401b1lem2b5" path="res://models/mount.gltf" id="6_xi521"]
+[ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="8_y2ust"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riqad"]
+shader = ExtResource("1_xqryp")
+shader_parameter/wind_direction = Vector2(1, 0)
+shader_parameter/wind_speed = 1.0
+shader_parameter/_density = 0.05
+shader_parameter/cloud_coverage = 0.25
+shader_parameter/_time_offset = 0.0
+shader_parameter/rayleigh = 2.0
+shader_parameter/rayleigh_color = Color(0.0407625, 0.142393, 0.552265, 1)
+shader_parameter/mie = 0.005
+shader_parameter/mie_eccentricity = 0.8
+shader_parameter/mie_color = Color(0.630024, 0.770016, 0.920006, 1)
+shader_parameter/turbidity = 10.0
+shader_parameter/sun_disk_scale = 1.0
+shader_parameter/ground_color = Color(0.707967, 0.707967, 0.707967, 1)
+shader_parameter/exposure = 0.1
+shader_parameter/weathermap = ExtResource("2_k00qh")
+
+[sub_resource type="Sky" id="Sky_ppfmo"]
+sky_material = SubResource("ShaderMaterial_riqad")
+
+[sub_resource type="Environment" id="Environment_psxfe"]
+background_mode = 2
+sky = SubResource("Sky_ppfmo")
+ssr_fade_in = 0.126134
+ssao_radius = 4.14
+fog_light_energy = 0.49
+volumetric_fog_density = 0.107
+volumetric_fog_emission_energy = 163.03
+volumetric_fog_gi_inject = 2.75
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4x80c"]
+
+[sub_resource type="Shader" id="Shader_0xd8c"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_refraction : filter_linear_mipmap, repeat_enable;
+uniform float refraction : hint_range(-1.0, 1.0, 0.001);
+uniform vec4 refraction_texture_channel;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = texture(texture_normal, vec2(base_uv.x + TIME * 0.02, base_uv.y)).rgb * texture(texture_normal, vec2(base_uv.x + TIME * -0.02, base_uv.y)).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Refraction: Enabled (with normal map texture)
+	vec3 unpacked_normal = NORMAL_MAP;
+	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
+	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
+	vec3 ref_normal = normalize(mix(
+			NORMAL,
+			TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,
+			NORMAL_MAP_DEPTH));
+	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * dot(texture(texture_refraction, base_uv), refraction_texture_channel) * refraction;
+
+	float ref_amount = 1.0 - albedo.a * albedo_tex.a;
+	EMISSION += textureLod(screen_texture, ref_ofs, ROUGHNESS * 8.0).rgb * ref_amount * EXPOSURE;
+	ALBEDO *= 1.0 - ref_amount;
+	// Force transparency on the material (required for refraction).
+	ALPHA = 1.0;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vefwt"]
+render_priority = 0
+shader = SubResource("Shader_0xd8c")
+shader_parameter/albedo = Color(0.1044, 0.421467, 0.58, 0.847059)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/refraction = 0.05
+shader_parameter/refraction_texture_channel = null
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(10, 10, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_refraction = ExtResource("3_vf6a7")
+shader_parameter/texture_normal = ExtResource("3_vf6a7")
+
+[sub_resource type="Animation" id="Animation_ptgel"]
+resource_name = "see"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.43192, 15.7447), Vector3(0, -1.16677, 18.6197), Vector3(0, -1.45063, 22.9303), Vector3(0, -1.45063, 25.8015)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0869697, 0, 0), Vector3(0.197205, 0, 0), Vector3(0.197205, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m7jma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 15.7447)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0869697, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae42o"]
+_data = {
+"RESET": SubResource("Animation_m7jma"),
+"see": SubResource("Animation_ptgel")
+}
+
+[node name="bad_end" type="Node3D"]
+script = ExtResource("1_btpn7")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.222726, 0.664263, 0.713546, -0.873208, -0.461383, 0.156954, 0.433477, -0.588116, 0.682801, -9.12777, 6.96, 5.28961)
+light_color = Color(0.78664, 0.75816, 0.7233, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_psxfe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996221, -0.0868602, 0, 0.0868602, 0.996221, 0, 0, 15.7447)
+fov = 37.8256
+
+[node name="WATER" type="MeshInstance3D" parent="."]
+transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -2.05738, 0)
+mesh = SubResource("PlaneMesh_4x80c")
+skeleton = NodePath("../WorldEnvironment")
+surface_material_override/0 = SubResource("ShaderMaterial_vefwt")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("4_0l4go")]
+transform = Transform3D(15.061, 0, 13.4538, 0, 20.195, 0, -13.4538, 0, 15.061, -1, 0.750524, 4.42579)
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("5_26dl0")]
+transform = Transform3D(2.20961, 0, 0.0416936, 0, 2.21, 0, -0.0416936, 0, 2.20961, 7.52322, -2.29583, -11.7989)
+
+[node name="mount" parent="." instance=ExtResource("6_xi521")]
+transform = Transform3D(-4.84726, 0, -20.7103, 0, 21.27, 0, 20.7103, 0, -4.84726, -12.8589, -2.33583, -19.7688)
+
+[node name="mount3" parent="." instance=ExtResource("6_xi521")]
+transform = Transform3D(9.81031, 0, -8.61341, 0, 13.055, 0, 8.61341, 0, 9.81031, -15.5305, -2.03916, 1.82463)
+
+[node name="mount2" parent="." instance=ExtResource("6_xi521")]
+transform = Transform3D(-23.9551, 0, 12.7887, 0, 27.155, 0, -12.7887, 0, -23.9551, 25.528, -2.19891, -8.9021)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ae42o")
+}
+
+[node name="place" parent="." instance=ExtResource("8_y2ust")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 2.89634, -2.23275, 28.1952)

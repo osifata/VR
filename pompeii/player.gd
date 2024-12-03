@@ -13,6 +13,7 @@ var input_dir = Vector3(0,0,0) #направление нажатия кнопо
 var direction = Vector3() # направление игрок
 var sens = 0.002
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+#var boat_scene = preload("res://path_to_boat_scene.tscn") # Укажите путь к сцене с лодкой
 
 var picked_object = 0
  
@@ -24,6 +25,14 @@ func pick_object():
 	if collider != null and collider.is_in_group("boards"):
 		picked_object += 1
 		collider.queue_free()
+		
+func show_boat():
+	var collider = inter.get_collider()
+	if collider != null and collider.is_in_group("action"):
+		print("лодка показалась")
+		#var boat_instance = boat_scene.instantiate()
+		#get_tree().root.add_child(boat_instance) # Добавляем лодку в текущую сцену
+		#boat_instance.global_transform.origin = collider.global_transform.origin + Vector3(0, 0, 5) # Смещаем лодку вперёд
  
 func _input(event: InputEvent): #повороты мышкой
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -35,7 +44,8 @@ func _input(event: InputEvent): #повороты мышкой
 			cam.rotation.x = clamp(cam.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 	if Input.is_action_pressed("pick"):
 		pick_object()
-			
+		show_boat()
+		
 func _physics_process(delta):
 	if Input.is_action_pressed("crouch"): #приседание
 		crouched = true

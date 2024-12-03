@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="POMPEII"
-run/main_scene="res://catscene.tscn"
+run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -69,5 +69,4 @@ renderer/rendering_method="mobile"
 
 [xr]
 
-openxr/enabled=true
 openxr/form_factor=1

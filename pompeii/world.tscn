@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c10235u5euaxs"]
+[gd_scene load_steps=21 format=3 uid="uid://c10235u5euaxs"]
 
 [ext_resource type="PackedScene" uid="uid://cll8ppusxmivn" path="res://player.tscn" id="1_m1l3o"]
 [ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="2_i01ik"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://panel.gd" id="8_n0nk4"]
 [ext_resource type="PackedScene" uid="uid://d1hronft2xgl0" path="res://object.tscn" id="9_mhti0"]
 [ext_resource type="Script" path="res://objects.gd" id="10_ptmm4"]
+[ext_resource type="PackedScene" uid="uid://berc3cficwrvh" path="res://sborka.tscn" id="11_pd57v"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ih11"]
 lifetime_randomness = 1.0
@@ -204,20 +205,28 @@ offset_right = 98.0
 offset_bottom = 40.0
 script = ExtResource("8_n0nk4")
 
+[node name="min" type="Label" parent="время/time"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 31.0
+offset_bottom = 29.0
+text = "00."
+
 [node name="seconds" type="Label" parent="время/time"]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 37.0
 offset_top = 6.0
-offset_right = 38.0
+offset_right = 61.0
 offset_bottom = 29.0
 text = "00."
 horizontal_alignment = 2
 
 [node name="milisec" type="Label" parent="время/time"]
 layout_mode = 0
-offset_left = 49.0
+offset_left = 67.0
 offset_top = 6.0
-offset_right = 69.0
+offset_right = 87.0
 offset_bottom = 29.0
 text = "00"
 horizontal_alignment = 2
@@ -269,24 +278,53 @@ transform = Transform3D(0.487746, 0, -7.77156e-16, 0, 1.61513, 0, 6.25278e-13, 0
 visible = false
 use_collision = true
 
-[node name="object" parent="." instance=ExtResource("9_mhti0")]
-transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -23.8311, -1.11182, -39.3137)
-
-[node name="object2" parent="." instance=ExtResource("9_mhti0")]
-transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -11.3341, -0.932092, -26.65)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="objects" type="Panel" parent="CanvasLayer"]
-offset_left = 975.0
+offset_left = 1015.0
 offset_right = 1151.0
 offset_bottom = 40.0
 script = ExtResource("10_ptmm4")
 
 [node name="predmet" type="Label" parent="CanvasLayer/objects"]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 6.0
-offset_right = 106.0
-offset_bottom = 29.0
+offset_left = 48.0
+offset_top = 7.0
+offset_right = 88.0
+offset_bottom = 30.0
 text = "0/10"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="object" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -23.8311, -1.11182, -39.3137)
+
+[node name="object10" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(1.00534, 0, -0.725874, 0, 1.24, 0, 0.725874, 0, 1.00534, -16.3807, -1.11182, -3.50331)
+
+[node name="object9" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(0.850155, -1.28379, 0.0269885, -1.28292, -0.847841, 0.0829048, -0.0542531, -0.0682509, -1.53753, -5.465, 0.578457, -38.386)
+
+[node name="object8" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(-0.880063, 0, 0.69274, 0, 1.12, 0, -0.69274, 0, -0.880063, -27.2975, -1.063, -21.7709)
+
+[node name="object7" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(-0.759417, 0, 0.0297579, 0, 0.76, 0, -0.0297579, 0, -0.759417, -34.3866, -0.889792, -10.3678)
+
+[node name="object6" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(-0.224835, 0, 1.5235, 0, 1.54, 0, -1.5235, 0, -0.224835, -7.22545, -1.07634, -20.3506)
+
+[node name="object5" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(-0.379477, -0.881814, 0, 0.881814, -0.379477, 0, 0, 0, 0.96, -35.5378, -0.170279, -37.0113)
+
+[node name="object4" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(-0.319725, -0.958058, 0, 0.958058, -0.319725, 0, 0, 0, 1.01, -11.7286, -0.236072, -40.11)
+
+[node name="object3" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(0.871313, 0, 1.26981, 0, 1.54, 0, -1.26981, 0, 0.871313, -30.7448, -1.11182, -29.3281)
+
+[node name="object2" parent="Node3D" instance=ExtResource("9_mhti0")]
+transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -11.3341, -1.1075, -26.65)
+
+[node name="sborka" parent="." instance=ExtResource("11_pd57v")]
+transform = Transform3D(-3.85097e-08, 0, 0.113, 0, 0.345, 0, -0.881, 0, -4.93939e-09, 0, 0, 14)

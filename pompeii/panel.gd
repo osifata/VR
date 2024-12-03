@@ -1,6 +1,7 @@
 extends Panel
 
-var time: float = 300.0  # Начальное время в секундах
+var time: float = 180.0  # Начальное время в секундах (300 секунд = 5 минут)
+var minutes: int = 0
 var seconds: int = 0
 var msec: int = 0
 var timer_finished: bool = false  # Флаг для проверки, что таймер завершён
@@ -12,15 +13,17 @@ func _process(delta) -> void:
 			time = 0
 			timer_finished = true  # Устанавливаем флаг завершения
 			change_scene()  # Меняем сцену
-		
-		# Обновляем секунды и миллисекунды
+
+		# Обновляем минуты, секунды и миллисекунды
+		minutes = int(time) / 60  # Целое число минут
+		seconds = int(time) % 60  # Остаток секунд
 		msec = fmod(time, 1) * 1000  # Миллисекунды
-		seconds = int(time)  # Целое число секунд
 
 		# Форматируем текст для отображения
-		$seconds.text = "%02d." % seconds
-		$milisec.text = "%03d" % msec
+		$min.text = "%02d:" % minutes  # Отображение минут
+		$seconds.text = "%02d." % seconds  # Отображение секунд
+		$milisec.text = "%03d" % msec  # Отображение миллисекунд
 
 # Функция для смены сцены
 func change_scene() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://catscene.tscn")  # Укажите путь к новой сцене
+	get_tree().call_deferred("change_scene_to_file", "res://bad_end.tscn")  # Укажите путь к новой сцене

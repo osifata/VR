@@ -27,12 +27,12 @@ shader_parameter/ground_color = Color(0.707967, 0.707967, 0.707967, 1)
 shader_parameter/exposure = 0.1
 shader_parameter/weathermap = ExtResource("8_st5kg")
 
-[sub_resource type="Sky" id="Sky_ppfmo"]
+[sub_resource type="Sky" id="Sky_n1c3c"]
 sky_material = SubResource("ShaderMaterial_pdn5s")
 
 [sub_resource type="Environment" id="Environment_ihegb"]
 background_mode = 2
-sky = SubResource("Sky_ppfmo")
+sky = SubResource("Sky_n1c3c")
 ssr_fade_in = 0.126134
 ssao_radius = 4.14
 fog_light_energy = 0.49
@@ -42,7 +42,7 @@ volumetric_fog_gi_inject = 2.75
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hy0vq"]
 
-[sub_resource type="Shader" id="Shader_0xd8c"]
+[sub_resource type="Shader" id="Shader_r1iep"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -115,7 +115,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fegm"]
 render_priority = 0
-shader = SubResource("Shader_0xd8c")
+shader = SubResource("Shader_r1iep")
 shader_parameter/albedo = Color(0.1044, 0.421467, 0.58, 0.847059)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.0
