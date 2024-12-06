@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://d34hojvlelelb"]
+[gd_scene load_steps=39 format=3 uid="uid://d34hojvlelelb"]
 
 [ext_resource type="Script" path="res://catscene.gd" id="1_dvw6i"]
 [ext_resource type="PackedScene" uid="uid://dpgtpw01ux6aq" path="res://bird.tscn" id="1_rwoxd"]
 [ext_resource type="PackedScene" uid="uid://dxp0ukb5ysa0n" path="res://models/vulcao_em_erupcao_-_erupting_volcano.glb" id="3_jk3m0"]
 [ext_resource type="PackedScene" uid="uid://canvcb75qdtuj" path="res://models/3d_field_inspection.glb" id="4_7qoa3"]
+[ext_resource type="Script" path="res://скидыщ.gd" id="4_e3qkd"]
 [ext_resource type="PackedScene" uid="uid://bg401b1lem2b5" path="res://models/mount.gltf" id="5_fkm5w"]
+[ext_resource type="AudioStream" uid="uid://bojheuyxk3m0m" path="res://models/archivo.mp3" id="5_ke1u3"]
 [ext_resource type="Texture2D" uid="uid://bladoega1axbg" path="res://models/normal map water.jpg" id="6_kmj70"]
 [ext_resource type="Shader" path="res://models/clouds.gdshader" id="7_kawcc"]
 [ext_resource type="Texture2D" uid="uid://xkrqytufo5tf" path="res://models/c7104516f546eab1e9243bdaae312809.jpg" id="8_st5kg"]
@@ -39,6 +41,106 @@ fog_light_energy = 0.49
 volumetric_fog_density = 0.107
 volumetric_fog_emission_energy = 163.03
 volumetric_fog_gi_inject = 2.75
+
+[sub_resource type="Curve" id="Curve_naycc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.222641, 1), 0.0, 0.0, 0, 0, Vector2(0.50566, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3unj3"]
+curve = SubResource("Curve_naycc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m1p3t"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3unj3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhqxf"]
+albedo_color = Color(1, 0.235294, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.584314, 0.160784, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yxkb8"]
+material = SubResource("StandardMaterial3D_lhqxf")
+top_radius = 0.1
+bottom_radius = 0.0
+
+[sub_resource type="Curve" id="Curve_2unk6"]
+_data = [Vector2(0, 0.716069), 0.0, 0.0, 0, 0, Vector2(0.532075, 0.949298), 0.0, 0.0, 0, 0, Vector2(0.977359, 0.736349), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fys5x"]
+curve = SubResource("Curve_2unk6")
+
+[sub_resource type="Curve" id="Curve_64wrq"]
+_data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v6hpk"]
+curve = SubResource("Curve_64wrq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5upn"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_v6hpk")
+color = Color(0.253084, 0.193798, 2.40654e-08, 1)
+alpha_curve = SubResource("CurveTexture_fys5x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn5uf"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgq8l"]
+material = SubResource("StandardMaterial3D_dn5uf")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_yodep"]
+offsets = PackedFloat32Array(0, 0.987342)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_002ld"]
+gradient = SubResource("Gradient_yodep")
+
+[sub_resource type="Curve" id="Curve_ti885"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.00624), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_onin5"]
+curve = SubResource("Curve_ti885")
+
+[sub_resource type="Curve" id="Curve_e5sct"]
+_data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nqho1"]
+curve = SubResource("Curve_e5sct")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vro1d"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_nqho1")
+color = Color(0.984314, 0.784314, 0, 1)
+color_ramp = SubResource("GradientTexture1D_002ld")
+emission_curve = SubResource("CurveTexture_onin5")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hy0vq"]
 
@@ -182,6 +284,54 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(-0.146247, -0.745528, -0.156544)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../СКИДЫЩ/Искры:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../СКИДЫЩ/дым:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../СКИДЫЩ/огонь:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../СКИДЫЩ/AudioStreamPlayer3D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jpx5b"]
 resource_name = "move"
@@ -234,6 +384,54 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(-0.011431, -1.57931, -0.111443), Vector3(-0.0683701, -1.09053, -0.119268), Vector3(-0.264486, -0.729032, -0.436078), Vector3(0.107976, -0.100288, -0.0289563), Vector3(0.197234, 0.0779807, -0.022683)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../СКИДЫЩ/Искры:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(9.53333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../СКИДЫЩ/дым:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(10.2667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../СКИДЫЩ/огонь:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(9.33333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../СКИДЫЩ/AudioStreamPlayer3D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(9.33333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3pkfy"]
 _data = {
@@ -255,6 +453,45 @@ environment = SubResource("Environment_ihegb")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.710334, 0.212194, -0.671118, -0.154241, 0.977227, 0.145726, 0.686757, -2.01166e-07, 0.726886, 0, 0.237028, 1.35078)
 fov = 37.8256
+
+[node name="СКИДЫЩ" type="Node3D" parent="."]
+script = ExtResource("4_e3qkd")
+
+[node name="Искры" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.777687, 4.83286, -6.2598)
+emitting = false
+amount = 24
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_m1p3t")
+draw_pass_1 = SubResource("CylinderMesh_yxkb8")
+
+[node name="дым" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.750031, 4.69151, -5.90715)
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_d5upn")
+draw_pass_1 = SubResource("SphereMesh_lgq8l")
+
+[node name="огонь" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755459, 4.59303, -6.07775)
+emitting = false
+amount = 12
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_vro1d")
+draw_pass_1 = SubResource("SphereMesh_lgq8l")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="СКИДЫЩ"]
+stream = ExtResource("5_ke1u3")
 
 [node name="WATER" type="MeshInstance3D" parent="."]
 transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -2.36437, 0)

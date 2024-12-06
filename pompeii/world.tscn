@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c10235u5euaxs"]
+[gd_scene load_steps=25 format=3 uid="uid://c10235u5euaxs"]
 
 [ext_resource type="PackedScene" uid="uid://cll8ppusxmivn" path="res://player.tscn" id="1_m1l3o"]
 [ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="2_i01ik"]
@@ -11,6 +11,38 @@
 [ext_resource type="PackedScene" uid="uid://d1hronft2xgl0" path="res://object.tscn" id="9_mhti0"]
 [ext_resource type="Script" path="res://objects.gd" id="10_ptmm4"]
 [ext_resource type="PackedScene" uid="uid://berc3cficwrvh" path="res://sborka.tscn" id="11_pd57v"]
+[ext_resource type="PackedScene" uid="uid://cf71phgcxr7nl" path="res://models/лодка.gltf" id="12_7qeio"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2bfr"]
+shader = ExtResource("4_s45xa")
+shader_parameter/wind_direction = Vector2(1, 0)
+shader_parameter/wind_speed = 1.0
+shader_parameter/_density = 0.05
+shader_parameter/cloud_coverage = 0.25
+shader_parameter/_time_offset = 0.0
+shader_parameter/rayleigh = 2.0
+shader_parameter/rayleigh_color = Color(0.150324, 0.255236, 0.373709, 1)
+shader_parameter/mie = 0.005
+shader_parameter/mie_eccentricity = 0.8
+shader_parameter/mie_color = Color(0.630024, 0.770016, 0.920006, 1)
+shader_parameter/turbidity = 10.0
+shader_parameter/sun_disk_scale = 1.0
+shader_parameter/ground_color = Color(0.707967, 0.707967, 0.707967, 1)
+shader_parameter/exposure = 0.1
+shader_parameter/weathermap = ExtResource("5_8aarf")
+
+[sub_resource type="Sky" id="Sky_fexwp"]
+sky_material = SubResource("ShaderMaterial_n2bfr")
+
+[sub_resource type="Environment" id="Environment_n7isx"]
+background_mode = 2
+sky = SubResource("Sky_fexwp")
+ssr_fade_in = 0.126134
+ssao_radius = 4.14
+fog_light_energy = 0.49
+volumetric_fog_density = 0.107
+volumetric_fog_emission_energy = 163.03
+volumetric_fog_gi_inject = 2.75
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ih11"]
 lifetime_randomness = 1.0
@@ -21,13 +53,15 @@ direction = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, -10, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a6pw"]
-albedo_color = Color(1, 0.23, 0.23, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_244qm"]
+albedo_color = Color(0.177419, 0.192337, 0.176143, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vvuw1"]
-material = SubResource("StandardMaterial3D_3a6pw")
-size = Vector2(0.02, 0.02)
-orientation = 2
+[sub_resource type="SphereMesh" id="SphereMesh_pjnhq"]
+material = SubResource("StandardMaterial3D_244qm")
+radius = 0.02
+height = 0.05
+radial_segments = 4
+rings = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ccs3c"]
 
@@ -121,54 +155,47 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/texture_refraction = ExtResource("3_vq0gs")
 shader_parameter/texture_normal = ExtResource("3_vq0gs")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2bfr"]
-shader = ExtResource("4_s45xa")
-shader_parameter/wind_direction = Vector2(1, 0)
-shader_parameter/wind_speed = 1.0
-shader_parameter/_density = 0.05
-shader_parameter/cloud_coverage = 0.25
-shader_parameter/_time_offset = 0.0
-shader_parameter/rayleigh = 2.0
-shader_parameter/rayleigh_color = Color(0.150324, 0.255236, 0.373709, 1)
-shader_parameter/mie = 0.005
-shader_parameter/mie_eccentricity = 0.8
-shader_parameter/mie_color = Color(0.630024, 0.770016, 0.920006, 1)
-shader_parameter/turbidity = 10.0
-shader_parameter/sun_disk_scale = 1.0
-shader_parameter/ground_color = Color(0.707967, 0.707967, 0.707967, 1)
-shader_parameter/exposure = 0.1
-shader_parameter/weathermap = ExtResource("5_8aarf")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w2thd"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 1, 0)
+spread = 55.323
+initial_velocity_min = 19.8
+initial_velocity_max = 20.2
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 3.0
+scale_min = 3.0
+scale_max = 7.0
 
-[sub_resource type="Sky" id="Sky_fexwp"]
-sky_material = SubResource("ShaderMaterial_n2bfr")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cs1j"]
+albedo_color = Color(0.641934, 0.641934, 0.641934, 1)
 
-[sub_resource type="Environment" id="Environment_n7isx"]
-background_mode = 2
-sky = SubResource("Sky_fexwp")
-ssr_fade_in = 0.126134
-ssao_radius = 4.14
-fog_light_energy = 0.49
-volumetric_fog_density = 0.107
-volumetric_fog_emission_energy = 163.03
-volumetric_fog_gi_inject = 2.75
+[sub_resource type="SphereMesh" id="SphereMesh_djust"]
+material = SubResource("StandardMaterial3D_7cs1j")
+radial_segments = 4
+rings = 3
 
 [node name="World" type="Node3D"]
 
 [node name="root" parent="." instance=ExtResource("1_m1l3o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56339, 1.71369, 1.86441)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56339, 0.659419, 1.86441)
 wall_min_slide_angle = 0.141372
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n7isx")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.402259, -0.500531, 0.766587, -0.873208, -0.461383, 0.156953, 0.27513, -0.732526, -0.622663, -19.671, 6.96, -31.83)
 light_color = Color(0.78664, 0.75816, 0.7233, 1)
 shadow_enabled = true
 
-[node name="place" parent="." instance=ExtResource("2_i01ik")]
+[node name="Окружение" type="Node3D" parent="."]
 transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, -14.2862, -1.62263, -19.1327)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(5.73253, 0, 0, 0, 1.06667, 0, 0, 0, 13.3318, -20.3033, 6.62473, -16.7132)
-amount = 100000
+[node name="пепел" type="GPUParticles3D" parent="Окружение"]
+transform = Transform3D(12.462, 0, 0, 0, 2.31885, 0, 0, 0, 28.9822, -13.0807, 17.929, 5.25978)
+amount = 50000
 lifetime = 10.0
 speed_scale = 0.1
 randomness = 0.49
@@ -176,27 +203,35 @@ fixed_fps = 60
 collision_base_size = 0.0
 draw_order = 1
 process_material = SubResource("ParticleProcessMaterial_3ih11")
-draw_pass_1 = SubResource("PlaneMesh_vvuw1")
+draw_pass_1 = SubResource("SphereMesh_pjnhq")
 
-[node name="WATER" type="MeshInstance3D" parent="."]
-transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -1.054, 0)
+[node name="WATER" type="MeshInstance3D" parent="Окружение"]
+transform = Transform3D(652.174, 0, 0, 0, 2.17391, 0, 0, 0, 652.174, 31.057, 1.23615, 41.5928)
 mesh = SubResource("PlaneMesh_ccs3c")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_3u1yd")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n7isx")
+[node name="Sketchfab_Scene" parent="Окружение" instance=ExtResource("4_oj6of")]
+transform = Transform3D(352.08, 0, 4.48607, 0, 352.109, 0, -4.48607, 0, 352.08, -25.9674, 43.957, -363.318)
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("4_oj6of")]
-transform = Transform3D(161.957, 0, 2.06359, 0, 161.97, 0, -2.06359, 0, 161.957, -26.2312, 18.5976, -186.259)
+[node name="mount" parent="Окружение" instance=ExtResource("7_u8rjx")]
+transform = Transform3D(60.017, 0, -90.6241, 0, 108.696, 0, 90.6241, 0, 60.017, -159.636, -0.265239, -376.944)
 
-[node name="mount" parent="." instance=ExtResource("7_u8rjx")]
-transform = Transform3D(27.6078, 0, -41.6871, 0, 50, 0, 41.6871, 0, 27.6078, -87.7186, -1.74464, -192.527)
+[node name="mount3" parent="Окружение" instance=ExtResource("7_u8rjx")]
+transform = Transform3D(81.6804, 0, -71.7152, 0, 108.696, 0, 71.7152, 0, 81.6804, -230.706, -0.265239, -256.383)
 
-[node name="mount3" parent="." instance=ExtResource("7_u8rjx")]
-transform = Transform3D(37.573, 0, -32.989, 0, 50, 0, 32.989, 0, 37.573, -120.411, -1.74464, -137.069)
+[node name="mount2" parent="Окружение" instance=ExtResource("7_u8rjx")]
+transform = Transform3D(-108.595, 0, -4.66541, 0, 108.696, 0, 4.66541, 0, -108.595, 136.822, -1.0097, -279.703)
 
-[node name="mount2" parent="." instance=ExtResource("7_u8rjx")]
-transform = Transform3D(-49.9539, 0, -2.14609, 0, 50, 0, 2.14609, 0, -49.9539, 48.6521, -2.08709, -147.796)
+[node name="Дымок" type="GPUParticles3D" parent="Окружение"]
+transform = Transform3D(2.17391, 0, 0, 0, 2.17391, 0, 0, 0, 2.17391, -28.658, 95.2253, -358.94)
+amount = 50
+lifetime = 3.44
+process_material = SubResource("ParticleProcessMaterial_w2thd")
+draw_pass_1 = SubResource("SphereMesh_djust")
+
+[node name="place" parent="." instance=ExtResource("2_i01ik")]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, -14.2862, -1.62263, -19.1327)
 
 [node name="время" type="CanvasLayer" parent="."]
 
@@ -294,37 +329,40 @@ offset_right = 88.0
 offset_bottom = 30.0
 text = "0/10"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Объекты - доски" type="Node3D" parent="."]
 
-[node name="object" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -23.8311, -1.11182, -39.3137)
 
-[node name="object10" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object10" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(1.00534, 0, -0.725874, 0, 1.24, 0, 0.725874, 0, 1.00534, -16.3807, -1.11182, -3.50331)
 
-[node name="object9" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object9" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(0.850155, -1.28379, 0.0269885, -1.28292, -0.847841, 0.0829048, -0.0542531, -0.0682509, -1.53753, -5.465, 0.578457, -38.386)
 
-[node name="object8" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object8" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(-0.880063, 0, 0.69274, 0, 1.12, 0, -0.69274, 0, -0.880063, -27.2975, -1.063, -21.7709)
 
-[node name="object7" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object7" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(-0.759417, 0, 0.0297579, 0, 0.76, 0, -0.0297579, 0, -0.759417, -34.3866, -0.889792, -10.3678)
 
-[node name="object6" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object6" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(-0.224835, 0, 1.5235, 0, 1.54, 0, -1.5235, 0, -0.224835, -7.22545, -1.07634, -20.3506)
 
-[node name="object5" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object5" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(-0.379477, -0.881814, 0, 0.881814, -0.379477, 0, 0, 0, 0.96, -35.5378, -0.170279, -37.0113)
 
-[node name="object4" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object4" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(-0.319725, -0.958058, 0, 0.958058, -0.319725, 0, 0, 0, 1.01, -11.7286, -0.236072, -40.11)
 
-[node name="object3" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object3" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(0.871313, 0, 1.26981, 0, 1.54, 0, -1.26981, 0, 0.871313, -30.7448, -1.11182, -29.3281)
 
-[node name="object2" parent="Node3D" instance=ExtResource("9_mhti0")]
+[node name="object2" parent="Объекты - доски" instance=ExtResource("9_mhti0")]
 transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -11.3341, -1.1075, -26.65)
 
 [node name="sborka" parent="." instance=ExtResource("11_pd57v")]
 transform = Transform3D(-3.85097e-08, 0, 0.113, 0, 0.345, 0, -0.881, 0, -4.93939e-09, 0, 0, 14)
+
+[node name="лодка2" parent="." instance=ExtResource("12_7qeio")]
+transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 2.10423, -0.922115, 10.9237)
