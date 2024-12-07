@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d1hronft2xgl0" path="res://object.tscn" id="9_mhti0"]
 [ext_resource type="Script" path="res://objects.gd" id="10_ptmm4"]
 [ext_resource type="PackedScene" uid="uid://berc3cficwrvh" path="res://sborka.tscn" id="11_pd57v"]
-[ext_resource type="PackedScene" uid="uid://cf71phgcxr7nl" path="res://models/лодка.gltf" id="12_7qeio"]
+[ext_resource type="PackedScene" uid="uid://dnw4dxiv8flrq" path="res://boat.tscn" id="12_g5nyc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2bfr"]
 shader = ExtResource("4_s45xa")
@@ -364,5 +364,6 @@ transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, -11.3341, -1.1075, -
 [node name="sborka" parent="." instance=ExtResource("11_pd57v")]
 transform = Transform3D(-3.85097e-08, 0, 0.113, 0, 0.345, 0, -0.881, 0, -4.93939e-09, 0, 0, 14)
 
-[node name="лодка2" parent="." instance=ExtResource("12_7qeio")]
-transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 2.10423, -0.922115, 10.9237)
+[node name="boat" parent="." instance=ExtResource("12_g5nyc")]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 1.78462, -1.07905, 12.1959)
+visible = false

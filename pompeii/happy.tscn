@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bgqra7gwb8iwu"]
+[gd_scene load_steps=2 format=3 uid="uid://bgqra7gwb8iwu"]
+
+[ext_resource type="Script" path="res://happy.gd" id="1_j1ojs"]
 
 [node name="happy" type="Node2D"]
+script = ExtResource("1_j1ojs")

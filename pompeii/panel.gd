@@ -1,6 +1,6 @@
 extends Panel
 
-var time: float = 180.0  # Начальное время в секундах (300 секунд = 5 минут)
+var time: float = 180.0  # Начальное время в секундах (180 секунд = 3 минут)
 var minutes: int = 0
 var seconds: int = 0
 var msec: int = 0

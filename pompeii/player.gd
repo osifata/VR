@@ -13,9 +13,11 @@ var input_dir = Vector3(0,0,0) #направление нажатия кнопо
 var direction = Vector3() # направление игрок
 var sens = 0.002
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-#var boat_scene = preload("res://path_to_boat_scene.tscn") # Укажите путь к сцене с лодкой
+
 
 var picked_object = 0
+@onready var boat = $"../boat"
+@onready var btn = $"../sborka"
  
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -29,10 +31,35 @@ func pick_object():
 func show_boat():
 	var collider = inter.get_collider()
 	if collider != null and collider.is_in_group("action"):
-		print("лодка показалась")
-		#var boat_instance = boat_scene.instantiate()
-		#get_tree().root.add_child(boat_instance) # Добавляем лодку в текущую сцену
-		#boat_instance.global_transform.origin = collider.global_transform.origin + Vector3(0, 0, 5) # Смещаем лодку вперёд
+		if picked_object == 10:
+			btn.visible = false
+			boat.visible = true
+			var collision = boat.get_node("CollisionShape3D")  # Найти коллизию
+			if collision:
+				collision.disabled = false  # Включить взаимодействие
+		elif picked_object < 10:
+			if btn is StaticBody3D:
+				var mesh_instance = btn.get_node("MeshInstance3D")
+				if mesh_instance:
+					var material = mesh_instance.material_override
+					if material == null:
+						material = StandardMaterial3D.new()
+						mesh_instance.material_override = material
+					var original_color = Color(0.082, 0.310, 1.0) # Цвет синий
+					material.albedo_color = Color(1, 0, 0) # Красный цвет
+					var timer = Timer.new()
+					timer.wait_time = 2.0
+					timer.one_shot = true
+					add_child(timer)
+					timer.start()
+					await timer.timeout
+					material.albedo_color = original_color
+					timer.queue_free()
+
+func happy_end():
+	var collider = inter.get_collider()
+	if collider != null and collider.is_in_group("boats"):
+		get_tree().call_deferred("change_scene_to_file", "res://happy_end.tscn")
  
 func _input(event: InputEvent): #повороты мышкой
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -45,6 +72,7 @@ func _input(event: InputEvent): #повороты мышкой
 	if Input.is_action_pressed("pick"):
 		pick_object()
 		show_boat()
+		happy_end()
 		
 func _physics_process(delta):
 	if Input.is_action_pressed("crouch"): #приседание

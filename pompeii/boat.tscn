@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnw4dxiv8flrq"]
+
+[ext_resource type="PackedScene" uid="uid://cf71phgcxr7nl" path="res://models/лодка.gltf" id="1_jbni7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7hst"]
+size = Vector3(1, 0.271606, 1.4397)
+
+[node name="boat" type="StaticBody3D" groups=["boats"]]
+
+[node name="лодка2" parent="." instance=ExtResource("1_jbni7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9.735, 0, 0, 0, 9.735, 0, 0, 0, 9.735, 0, 1.08913, 1.05407)
+shape = SubResource("BoxShape3D_j7hst")
+disabled = true
