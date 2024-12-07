@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3rinh2wmivuf"]
+[gd_scene load_steps=42 format=3 uid="uid://c3rinh2wmivuf"]
 
 [ext_resource type="Script" path="res://bad_end.gd" id="1_btpn7"]
 [ext_resource type="Shader" path="res://models/clouds.gdshader" id="1_xqryp"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://canvcb75qdtuj" path="res://models/3d_field_inspection.glb" id="5_26dl0"]
 [ext_resource type="PackedScene" uid="uid://bg401b1lem2b5" path="res://models/mount.gltf" id="6_xi521"]
 [ext_resource type="PackedScene" uid="uid://74johdsmm5kl" path="res://models/place.gltf" id="8_y2ust"]
+[ext_resource type="Script" path="res://скидыщ.gd" id="9_6gdmv"]
+[ext_resource type="AudioStream" uid="uid://bojheuyxk3m0m" path="res://models/archivo.mp3" id="10_ca2ww"]
+[ext_resource type="PackedScene" uid="uid://bochweamvaq30" path="res://models/rock.gltf" id="11_dvbfg"]
+[ext_resource type="AudioStream" uid="uid://250fupbc3ii8" path="res://models/Mystery theme 2.mp3" id="12_cxmly"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_riqad"]
 shader = ExtResource("1_xqryp")
@@ -158,6 +162,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.0869697, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rock2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.80279, 2.28211, 19.1005)]
+}
 
 [sub_resource type="Animation" id="Animation_ptgel"]
 resource_name = "see"
@@ -169,10 +185,10 @@ tracks/0/path = NodePath("Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 8, 10),
+"times": PackedFloat32Array(0, 4, 6.9, 9.98558),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.43192, 15.7447), Vector3(0, -1.16677, 18.6197), Vector3(0, -1.45063, 22.9303), Vector3(0, -1.45063, 25.8015)]
+"values": [Vector3(0, 1.43192, 15.7447), Vector3(0, -1.16677, 18.6197), Vector3(0, -1.45063, 22.9303), Vector3(0, -1.666, 25.802)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -181,10 +197,22 @@ tracks/1/path = NodePath("Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4, 8, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4, 6.9, 9.03333, 9.98558),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0869697, 0, 0), Vector3(0.197205, 0, 0), Vector3(0.197205, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.0869697, 0, 0), Vector3(0.197205, 0, 0), Vector3(0.197205, 0, 0), Vector3(0.431096, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rock2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-0.4, 8.5, 9.98558),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.529016, 6.42191, 15.5748), Vector3(-0.529016, 6.42191, 15.5748), Vector3(0.0650249, -1.30021, 24.8782)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ae42o"]
@@ -192,6 +220,119 @@ _data = {
 "RESET": SubResource("Animation_m7jma"),
 "see": SubResource("Animation_ptgel")
 }
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7wjo"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(5, 100, 5)
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, -10, 0)
+scale_max = 4.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_244qm"]
+albedo_color = Color(0.177419, 0.192337, 0.176143, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rbgr5"]
+material = SubResource("StandardMaterial3D_244qm")
+radius = 0.02
+height = 0.05
+radial_segments = 4
+rings = 2
+
+[sub_resource type="Curve" id="Curve_polsw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.222641, 1), 0.0, 0.0, 0, 0, Vector2(0.50566, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3unj3"]
+curve = SubResource("Curve_polsw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vio7d"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3unj3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhqxf"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.541176, 0.278431, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ibogm"]
+material = SubResource("StandardMaterial3D_lhqxf")
+top_radius = 0.1
+bottom_radius = 0.0
+
+[sub_resource type="Curve" id="Curve_pjbde"]
+_data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v6hpk"]
+curve = SubResource("Curve_pjbde")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dq1ao"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 3, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.5
+gravity = Vector3(0, 6, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_v6hpk")
+color = Color(0.21, 0.20265, 0.1806, 0.768627)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn5uf"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.98, 0.92267, 0.7154, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ujks7"]
+material = SubResource("StandardMaterial3D_dn5uf")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_35qlu"]
+offsets = PackedFloat32Array(0, 0.987342)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_002ld"]
+gradient = SubResource("Gradient_35qlu")
+
+[sub_resource type="Curve" id="Curve_a050d"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.00624), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_onin5"]
+curve = SubResource("Curve_a050d")
+
+[sub_resource type="Curve" id="Curve_o60s3"]
+_data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nqho1"]
+curve = SubResource("Curve_o60s3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0qwq"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_nqho1")
+color = Color(0.984314, 0.784314, 0, 1)
+color_ramp = SubResource("GradientTexture1D_002ld")
+emission_curve = SubResource("CurveTexture_onin5")
 
 [node name="bad_end" type="Node3D"]
 script = ExtResource("1_btpn7")
@@ -205,7 +346,7 @@ shadow_enabled = true
 environment = SubResource("Environment_psxfe")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996221, -0.0868602, 0, 0.0868602, 0.996221, 0, 0, 15.7447)
+transform = Transform3D(1, 0, 0, 0, 0.99622, -0.0868601, 0, 0.0868601, 0.99622, 0, 0, 15.7447)
 fov = 37.8256
 
 [node name="WATER" type="MeshInstance3D" parent="."]
@@ -215,7 +356,7 @@ skeleton = NodePath("../WorldEnvironment")
 surface_material_override/0 = SubResource("ShaderMaterial_vefwt")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("4_0l4go")]
-transform = Transform3D(15.061, 0, 13.4538, 0, 20.195, 0, -13.4538, 0, 15.061, -1, 0.750524, 4.42579)
+transform = Transform3D(15.061, 0, 13.4538, 0, 20.195, 0, -13.4538, 0, 15.061, -1, -0.410578, 4.42579)
 
 [node name="Sketchfab_Scene2" parent="." instance=ExtResource("5_26dl0")]
 transform = Transform3D(2.20961, 0, 0.0416936, 0, 2.21, 0, -0.0416936, 0, 2.20961, 7.52322, -2.29583, -11.7989)
@@ -236,3 +377,77 @@ libraries = {
 
 [node name="place" parent="." instance=ExtResource("8_y2ust")]
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 2.89634, -2.23275, 28.1952)
+
+[node name="СКИДЫЩ" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924881, 0.29331)
+script = ExtResource("9_6gdmv")
+
+[node name="пепел" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(0.967, 0, 0, 0, 0.517, 0, 0, 0, 0.803, 0.0656946, 0.592923, 25.8576)
+amount = 100
+lifetime = 10.0
+speed_scale = 0.1
+randomness = 0.49
+fixed_fps = 60
+collision_base_size = 0.0
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_k7wjo")
+draw_pass_1 = SubResource("SphereMesh_rbgr5")
+
+[node name="Искры2" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8239, 3.06543, 4.34063)
+amount = 50
+lifetime = 2.06
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_vio7d")
+draw_pass_1 = SubResource("CylinderMesh_ibogm")
+
+[node name="Искры" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.777687, 3.0038, 4.01217)
+amount = 24
+lifetime = 5.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_vio7d")
+draw_pass_1 = SubResource("CylinderMesh_ibogm")
+
+[node name="дым2" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.741067, 2.1328, 4.7747)
+amount = 25
+lifetime = 2.91
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_dq1ao")
+draw_pass_1 = SubResource("SphereMesh_ujks7")
+
+[node name="дым" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(0.815, 0, 0, 0, 0.815, 0, 0, 0, 0.815, -0.683536, 2.86245, 4.36482)
+amount = 12
+lifetime = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_dq1ao")
+draw_pass_1 = SubResource("SphereMesh_ujks7")
+
+[node name="огонь" type="GPUParticles3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12815, 2.76397, 4.19421)
+amount = 12
+lifetime = 0.5
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_t0qwq")
+draw_pass_1 = SubResource("SphereMesh_ujks7")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="СКИДЫЩ"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41998, 3.95695)
+stream = ExtResource("10_ca2ww")
+autoplay = true
+parameters/looping = true
+
+[node name="rock2" parent="." instance=ExtResource("11_dvbfg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80279, 2.28211, 19.1005)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_cxmly")
+autoplay = true
+parameters/looping = true

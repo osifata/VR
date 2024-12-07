@@ -1,30 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://kt0ut6m74ce0"]
+[gd_scene load_steps=4 format=3 uid="uid://kt0ut6m74ce0"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_58an6"]
 [ext_resource type="Texture2D" uid="uid://cnawwutkg68mx" path="res://img/386930597-65d20997-31a9-4750-84c2-88a0b0546df5.png" id="2_wvvpc"]
+[ext_resource type="AudioStream" uid="uid://dmlfo6otnkdam" path="res://models/Main menu theme.mp3" id="3_647qk"]
 
 [node name="menu" type="Node2D"]
 script = ExtResource("1_58an6")
 
 [node name="386930597-65d20997-31a9-4750-84c2-88a0b0546Df5" type="Sprite2D" parent="."]
-position = Vector2(579, 343)
+position = Vector2(578, 323)
+scale = Vector2(0.63852, 0.63852)
 texture = ExtResource("2_wvvpc")
 
 [node name="Start" type="Button" parent="."]
-offset_left = 444.0
-offset_top = 158.0
-offset_right = 691.0
-offset_bottom = 249.0
+offset_left = 65.0
+offset_top = 160.0
+offset_right = 455.0
+offset_bottom = 251.0
 theme_override_font_sizes/font_size = 60
 text = "НАЧАТЬ"
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 452.0
-offset_top = 299.0
-offset_right = 681.0
-offset_bottom = 390.0
+offset_left = 65.0
+offset_top = 300.0
+offset_right = 455.0
+offset_bottom = 391.0
 theme_override_font_sizes/font_size = 60
 text = "ВЫЙТИ"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -16.0
+offset_top = 465.0
+offset_right = 1142.0
+offset_bottom = 659.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.796078)
+theme_override_constants/line_spacing = 0
+theme_override_constants/shadow_outline_size = 15
+theme_override_font_sizes/font_size = 35
+text = "Авторы
+Анкудинова Наталина 
+Бузевич Софья"
+horizontal_alignment = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_647qk")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Start" to="." method="start"]
 [connection signal="pressed" from="Quit" to="." method="quit"]

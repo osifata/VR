@@ -1,6 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgqra7gwb8iwu"]
+[gd_scene load_steps=4 format=3 uid="uid://bgqra7gwb8iwu"]
 
 [ext_resource type="Script" path="res://happy.gd" id="1_j1ojs"]
+[ext_resource type="Texture2D" uid="uid://b3sjuq56kk1da" path="res://img/happy.jpg" id="2_evb5n"]
+[ext_resource type="AudioStream" uid="uid://8nd1gxtirflb" path="res://models/Your Story Interactive - Sails in the Fog - Wedding.mp3" id="3_rwjhy"]
 
 [node name="happy" type="Node2D"]
 script = ExtResource("1_j1ojs")
+
+[node name="Happy" type="Sprite2D" parent="."]
+position = Vector2(575, 324)
+texture = ExtResource("2_evb5n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -38.0
+offset_top = 80.0
+offset_right = 1186.0
+offset_bottom = 194.0
+color = Color(0, 0, 0, 0.388235)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -2.0
+offset_top = 76.0
+offset_right = 1156.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.603943, 0.405083, 0.882353)
+theme_override_font_sizes/font_size = 80
+text = "ВЫ СПАСЛИСЬ"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rwjhy")
+autoplay = true

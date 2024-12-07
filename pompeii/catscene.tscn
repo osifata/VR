@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d34hojvlelelb"]
+[gd_scene load_steps=40 format=3 uid="uid://d34hojvlelelb"]
 
 [ext_resource type="Script" path="res://catscene.gd" id="1_dvw6i"]
 [ext_resource type="PackedScene" uid="uid://dpgtpw01ux6aq" path="res://bird.tscn" id="1_rwoxd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bladoega1axbg" path="res://models/normal map water.jpg" id="6_kmj70"]
 [ext_resource type="Shader" path="res://models/clouds.gdshader" id="7_kawcc"]
 [ext_resource type="Texture2D" uid="uid://xkrqytufo5tf" path="res://models/c7104516f546eab1e9243bdaae312809.jpg" id="8_st5kg"]
+[ext_resource type="AudioStream" uid="uid://b3hftbj7x0e66" path="res://models/lost-in-shadows-1.mp3" id="11_wm2m0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdn5s"]
 shader = ExtResource("7_kawcc")
@@ -46,7 +47,7 @@ volumetric_fog_gi_inject = 2.75
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.222641, 1), 0.0, 0.0, 0, 0, Vector2(0.50566, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_3unj3"]
+[sub_resource type="CurveTexture" id="CurveTexture_y5p2k"]
 curve = SubResource("Curve_naycc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m1p3t"]
@@ -56,16 +57,16 @@ initial_velocity_min = 12.0
 initial_velocity_max = 14.0
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_3unj3")
+scale_curve = SubResource("CurveTexture_y5p2k")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhqxf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k40gp"]
 albedo_color = Color(1, 0.235294, 0, 1)
 emission_enabled = true
 emission = Color(1, 0.584314, 0.160784, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_yxkb8"]
-material = SubResource("StandardMaterial3D_lhqxf")
+material = SubResource("StandardMaterial3D_k40gp")
 top_radius = 0.1
 bottom_radius = 0.0
 
@@ -73,14 +74,14 @@ bottom_radius = 0.0
 _data = [Vector2(0, 0.716069), 0.0, 0.0, 0, 0, Vector2(0.532075, 0.949298), 0.0, 0.0, 0, 0, Vector2(0.977359, 0.736349), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fys5x"]
+[sub_resource type="CurveTexture" id="CurveTexture_krjvn"]
 curve = SubResource("Curve_2unk6")
 
 [sub_resource type="Curve" id="Curve_64wrq"]
 _data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_v6hpk"]
+[sub_resource type="CurveTexture" id="CurveTexture_82qel"]
 curve = SubResource("Curve_64wrq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5upn"]
@@ -92,16 +93,16 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 5, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_v6hpk")
+scale_curve = SubResource("CurveTexture_82qel")
 color = Color(0.253084, 0.193798, 2.40654e-08, 1)
-alpha_curve = SubResource("CurveTexture_fys5x")
+alpha_curve = SubResource("CurveTexture_krjvn")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn5uf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n8pb"]
 transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_lgq8l"]
-material = SubResource("StandardMaterial3D_dn5uf")
+material = SubResource("StandardMaterial3D_4n8pb")
 radial_segments = 8
 rings = 4
 
@@ -109,7 +110,7 @@ rings = 4
 offsets = PackedFloat32Array(0, 0.987342)
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_002ld"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mk7e1"]
 gradient = SubResource("Gradient_yodep")
 
 [sub_resource type="Curve" id="Curve_ti885"]
@@ -117,14 +118,14 @@ max_value = 2.0
 _data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.00624), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_onin5"]
+[sub_resource type="CurveTexture" id="CurveTexture_hj1op"]
 curve = SubResource("Curve_ti885")
 
 [sub_resource type="Curve" id="Curve_e5sct"]
 _data = [Vector2(0, 0.0265211), 0.0, 0.0, 0, 0, Vector2(0.245283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_nqho1"]
+[sub_resource type="CurveTexture" id="CurveTexture_egivi"]
 curve = SubResource("Curve_e5sct")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vro1d"]
@@ -137,10 +138,10 @@ initial_velocity_max = 4.0
 gravity = Vector3(0, 5, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_nqho1")
+scale_curve = SubResource("CurveTexture_egivi")
 color = Color(0.984314, 0.784314, 0, 1)
-color_ramp = SubResource("GradientTexture1D_002ld")
-emission_curve = SubResource("CurveTexture_onin5")
+color_ramp = SubResource("GradientTexture1D_mk7e1")
+emission_curve = SubResource("CurveTexture_hj1op")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hy0vq"]
 
@@ -443,7 +444,7 @@ _data = {
 script = ExtResource("1_dvw6i")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.222726, 0.664263, 0.713546, -0.873208, -0.461383, 0.156954, 0.433477, -0.588116, 0.682801, -9.12777, 6.96, 5.28961)
+transform = Transform3D(0.998301, 0.0389949, -0.0433104, 0.0581172, -0.721582, 0.689885, -0.00434996, -0.691229, -0.722622, -9.12777, 6.96, 5.28961)
 light_color = Color(0.78664, 0.75816, 0.7233, 1)
 shadow_enabled = true
 
@@ -522,3 +523,8 @@ transform = Transform3D(9.81031, 0, -8.61341, 0, 13.055, 0, 8.61341, 0, 9.81031,
 
 [node name="mount2" parent="." instance=ExtResource("5_fkm5w")]
 transform = Transform3D(-27.13, 0, -1.16554, 0, 27.155, 0, 1.16554, 0, -27.13, 25.528, -2.08709, -8.9021)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_wm2m0")
+autoplay = true
+parameters/looping = true

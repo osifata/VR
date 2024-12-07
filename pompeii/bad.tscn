@@ -1,20 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3p0psqxphne7"]
+[gd_scene load_steps=4 format=3 uid="uid://b3p0psqxphne7"]
 
 [ext_resource type="Texture2D" uid="uid://qpkvorhbl6mn" path="res://img/2017Nature___Volcanoes_Lightning_above_the_black_smoke_erupting_volcano_Colima_113560_18.jpg" id="1_3d8n3"]
 [ext_resource type="Script" path="res://bad.gd" id="1_50ybj"]
+[ext_resource type="AudioStream" uid="uid://cew3wuh35cvvr" path="res://models/Despair theme.mp3" id="3_8k46i"]
 
 [node name="bad" type="Node2D"]
 script = ExtResource("1_50ybj")
 
 [node name="2017NatureVolcanoesLightningAboveTheBlackSmokeEruptingVolcanoColima11356018" type="Sprite2D" parent="."]
-position = Vector2(579, 312)
-scale = Vector2(0.623333, 0.623333)
+position = Vector2(556, 336)
+scale = Vector2(1.68762, 1.68762)
 texture = ExtResource("1_3d8n3")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -38.0
+offset_top = 80.0
+offset_right = 1186.0
+offset_bottom = 194.0
+color = Color(0, 0, 0, 0.388235)
+
 [node name="Label" type="Label" parent="."]
-offset_left = 2.0
-offset_top = 512.0
-offset_right = 858.0
-offset_bottom = 622.0
+offset_left = -2.0
+offset_top = 76.0
+offset_right = 1156.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.95, 0.038, 0.038, 0.882353)
 theme_override_font_sizes/font_size = 80
-text = "Ты погиб от вулкана("
+text = "ВЫ ПОГИБЛИ"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8k46i")
+autoplay = true
+parameters/looping = true

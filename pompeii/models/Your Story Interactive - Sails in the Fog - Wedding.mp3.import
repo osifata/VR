@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8nd1gxtirflb"
+path="res://.godot/imported/Your Story Interactive - Sails in the Fog - Wedding.mp3-67a44e12b2aa1d3b52ac16a1fa770677.mp3str"
+
+[deps]
+
+source_file="res://models/Your Story Interactive - Sails in the Fog - Wedding.mp3"
+dest_files=["res://.godot/imported/Your Story Interactive - Sails in the Fog - Wedding.mp3-67a44e12b2aa1d3b52ac16a1fa770677.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
